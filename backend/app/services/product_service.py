@@ -3,8 +3,8 @@ from typing import List
 from sqlalchemy.orm import Session
 from fastapi import HTTPException, status
 
-from ..repositories .category_repository import CategoryRepository
-from ..repositories .product_repository import ProductRepository
+from ..repositories.category_repository import CategoryRepository
+from ..repositories.product_repository import ProductRepository
 from ..schemas.product import ProductResponse, ProductListResponse, ProductCreate 
 
 class ProductService:
@@ -20,13 +20,13 @@ class ProductService:
    def get_product_by_id(self, product_id : int) -> ProductResponse:
       product = self.product_repository.get_by_id(product_id)
       if not product:
-         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, details=f"Product with id {product_id} not found")    
+         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Product with id {product_id} not found")    
       return ProductResponse.model_validate(product)
    
    def get_products_by_category(self, category_id: int) -> ProductResponse:
       category = self.category_repository.get_by_id(category_id)
       if not category:
-         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, details=f"Category with id {category_id} not found")    
+         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Category with id {category_id} not found")    
       products = self.product_repository.get_by_category(category_id)
       products_responce = [ProductResponse.model_validate(prod) for prod in products]   
       return ProductListResponse(products=products_responce, total=len(products_responce))
@@ -34,6 +34,6 @@ class ProductService:
    def create_product(self, product_data: ProductCreate) -> ProductResponse:
       category = self.category_repository.get_by_id(product_data.category_id)
       if not category:
-         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, details=f"Category with id {product_data.category_id} not found")    
+         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Category with id {product_data.category_id} not found")    
       product = self.product_repository.create(product_data)
       return ProductResponse.model_validate(product)
