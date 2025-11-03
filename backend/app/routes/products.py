@@ -6,7 +6,7 @@ from ..schemas.product import ProductResponse, ProductListResponse
 from ..services.product_service import ProductService
 
 router = APIRouter(
-   prefix="api/products",
+   prefix="/api/products",
    tags=['products']
 ) 
 

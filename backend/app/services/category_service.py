@@ -1,6 +1,6 @@
 from typing import List
 
-from sqlachemy.orm import Session
+from sqlalchemy.orm import Session
 from fastapi import HTTPException, status
 
 from ..repositories.category_repository import CategoryRepository

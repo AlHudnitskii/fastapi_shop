@@ -9,7 +9,7 @@ from ..schemas.cart import CartItemCreate, CartItemUpdate, CartResponse
 from ..services.cart_service import CartService 
 
 router = APIRouter(
-   prefix="api/cart",
+   prefix="/api/cart",
    tags=['cart']
 ) 
 

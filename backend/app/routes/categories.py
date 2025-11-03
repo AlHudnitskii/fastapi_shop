@@ -8,7 +8,7 @@ from ..schemas.category import CategoryResponse
 from ..services.category_service import CategoryService
 
 router = APIRouter(
-   prefix="api/categories",
+   prefix="/api/categories",
    tags=['categories']
 ) 
 

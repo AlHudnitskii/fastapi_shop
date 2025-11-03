@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optinal 
+from typing import Optional 
 
 
 class CartItemBase(BaseModel):
@@ -21,7 +21,7 @@ class CartItem(BaseModel):
    quantity: int = Field(..., description="Quantity in cart")
    subtotal: float = Field(..., 
                            description="Total price for this item (price * quantity)")
-   image_url: Optinal[str] = Field(None, description="Product image URL")
+   image_url: Optional[str] = Field(None, description="Product image URL")
    
 class CartResponse(BaseModel):
    items: list[CartItem] = Field(..., description="List of items in cart")   
